@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "../../Styles/Poster.css";
 import axios from "axios";
-import { ImageUrl, TrendingURL } from "../../Urls/URL";
-const Poster = () => {
+import {  ImageUrl, Orginals, TrendingURL, romance } from "../../Urls/URL";
+const Poster = ({type,title}) => {
   const [poster, setPoster] = useState([]);
   useEffect(() => {
-    axios.get(TrendingURL).then((res) => setPoster(res.data.results));
+    axios.get(type === 'a' ? Orginals : type === 'b' ? romance : TrendingURL).then((res) => setPoster(res.data.results));
   }, []);
   return (
     <div className="poster">
-      <h3 className="type">Popular</h3>
+      <h3 className="type">{title}</h3>
       <div className="posters">
-        {poster.map((image) => {
+        {poster.map((data) => {
           return (
-            <img className="post" src={ImageUrl + image.poster_path} alt="" />
+            <>
+              <div>
+                <img
+                  className="post"
+                  src={ImageUrl + data.poster_path}
+                  alt=""
+                />
+                <p className="poster-title">
+                  {data.title ? data.title : "DareDevil"}
+                </p>
+              </div>
+            </>
           );
         })}
       </div>
