@@ -1,58 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../Styles/Poster.css";
+import axios from "axios";
+import { ImageUrl, TrendingURL } from "../../Urls/URL";
 const Poster = () => {
+  const [poster, setPoster] = useState([]);
+  useEffect(() => {
+    axios.get(TrendingURL).then((res) => setPoster(res.data.results));
+  }, []);
   return (
     <div className="poster">
       <h3 className="type">Popular</h3>
       <div className="posters">
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img
-          className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        <img className="post"
-          src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-          alt=""
-        />
-        
+        {poster.map((image) => {
+          return (
+            <img className="post" src={ImageUrl + image.poster_path} alt="" />
+          );
+        })}
       </div>
     </div>
   );
