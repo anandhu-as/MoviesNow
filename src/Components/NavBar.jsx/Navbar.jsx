@@ -1,14 +1,11 @@
 import React from "react";
 import "../../Styles/Navbar.css";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="navbar">
-      <p className="navabr-title">MoviesNow</p>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-        alt=""
-        className="avatar"
-      />
+      <p className="navbar-title">MoviesNow</p>
+     
     </div>
   );
 };

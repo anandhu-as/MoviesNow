@@ -1,17 +1,18 @@
 import React from "react";
-import Navbar from "./Components/NavBar.jsx/Navbar";
 import Banner from "./Components/Banner/Banner";
-import Poster from "./Components/Posters/Poster";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./Components/NavBar.jsx/Navbar";
 
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Banner />
-      <Poster  type='a' title='popular' />
-      <Poster  type='b' title='Trending'/>
-      <Poster  type='c' title='action'/>
+         <Navbar/>
+      <Routes>
+        <Route path="/" Component={Banner} />
+   
+      </Routes>
+   
     </div>
   );
 };
